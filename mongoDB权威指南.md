@@ -3,13 +3,13 @@
 ### mongo是JavaScript shell：这就需要好好再去学习一下js了
 
 ### 怎么学习
->1，两本书《mongodb权威指南》入门和《深入学习mongodb》更进一步
->2，阿里云云栖社区：MongoDB资料大全： https://yq.aliyun.com/articles/53867?utm_campaign=wenzhang&utm_medium=article&utm_source=QQ-qun&utm_content=m_10349
->3，英文文档：https://docs.mongodb.com/manual/
->4，中文文档：http://docs.mongoing.com/manual-zh/
->5，官网，以及相关问题问答部分
->6，源码
->7，技术群：qq群，微信群
+>1，两本书《mongodb权威指南》入门和《深入学习mongodb》更进一步           
+>2，阿里云云栖社区：MongoDB资料大全： https://yq.aliyun.com/articles/53867?utm_campaign=wenzhang&utm_medium=article&utm_source=QQ-qun&utm_content=m_10349         
+>3，英文文档：https://docs.mongodb.com/manual/        
+>4，中文文档：http://docs.mongoing.com/manual-zh/          
+>5，官网，以及相关问题问答部分              
+>6，源码              
+>7，技术群：qq群，微信群           
 
 ### 基本命令
 
@@ -18,43 +18,43 @@
 
 ### MongoDB VS Mysql
 ---------|----------|---------|---------|----------|---------
-|数据库|database|	create| database |$dbname	db	use $dbname|
-|表	|table|	create table $tablename schema	|collection	|无需事先创建。 db.createCollection|
-|记录|	record|	insert into $tablename ...|	document|	db.$collectionName.insert({})|
+数据库|database|	create| database |$dbname	db	use $dbname
+表	|table|	create table $tablename schema	|collection	|无需事先创建。 db.createCollection
+记录|	record|	insert into $tablename ...|	document|	db.$collectionName.insert({})
 
 ### document文档：核心概念
->1，文档的键是字符串，不能含有\0（空格，是以空格为结尾符的）区分类型，大小写，不可有重复的键
+>1，文档的键是字符串，不能含有\0（空格，是以空格为结尾符的）区分类型，大小写，不可有重复的键    
 
 ### collection集合：一组文档
->1，集合是无模式的，即集合里面的文档的格式各样，但是开发上，还是一个集合一种文档格式，这样对提取数据也方便
->2，集合名不能是空串“”，不能含有空格，不能以system.开头，用户命名的集合不能含有保留字符$
+>1，集合是无模式的，即集合里面的文档的格式各样，但是开发上，还是一个集合一种文档格式，这样对提取数据也方便       
+>2，集合名不能是空串“”，不能含有空格，不能以system.开头，用户命名的集合不能含有保留字符$       
 
 #### 子集合:例如 blog.authors
 
 ### 数据库：最终变成文件系统里的文件
->1，数据库名不能有空串，不能含有空格 . \ / \0,应全部小写，最多64字节
->2，保留字段不能用，比如admin，config，root等
+>1，数据库名不能有空串，不能含有空格 . \ / \0,应全部小写，最多64字节       
+>2，保留字段不能用，比如admin，config，root等          
 
 
 ### 类型
->1，JavaScript数值类型仅支持64位浮点数，所以32位整型会被自动转换成64位浮点型
->2，不支持64位整型，但是shell使一个特殊内嵌文档来显示64位整数
->3，JavaScript只有一种数字类型（64位浮点数），但是mongodb有3中（32位整型，64位整型，64位浮点型），javascript shell通过办法绕过JavaScript的限制，但是存取时，会造成不准确的可能，要是插入的64位整数不能精确的双精度浮点显示，shell会自动添加两个键，top（高32位）和bottom（低32位）
->4，数组可以包含不同数据类型的元素{"things":["pie",3.14]}
+>1，JavaScript数值类型仅支持64位浮点数，所以32位整型会被自动转换成64位浮点型            
+>2，不支持64位整型，但是shell使一个特殊内嵌文档来显示64位整数            
+>3，JavaScript只有一种数字类型（64位浮点数），但是mongodb有3中（32位整型，64位整型，64位浮点型），javascript shell通过办法绕过JavaScript的限制，但是存取时，会造成不准确的可能，要是插入的64位整数不能精确的双精度浮点显示，shell会自动添加两个键，top（高32位）和bottom（低32位）                 
+>4，数组可以包含不同数据类型的元素{"things":["pie",3.14]}             
 
 ### _id:ObjectId()数据插入时额外生成的唯一健，适应分布式
->1，12字节存储空间，24位十六进制字符串，例如："_id" : ObjectId("5d36d01d121c0f10bd2df3e4")   5d36d01d（16进制）=1563873309（十进制）=》  1563873309（时间戳：秒）=2019/7/23 17:15:9（北京时间） 
->2，格式：时间戳（4字节，秒） 机器（3字节，通常是机器名散列值） PID（2字节，产生ObjectId的进程id） 计数器（3字节，范围2的24次方，即每个机器每个进程每秒中最多允许16777216个不同的ObjectId） 时间戳在前，数据大致以插入顺序排列
+>1，12字节存储空间，24位十六进制字符串，例如："_id" : ObjectId("5d36d01d121c0f10bd2df3e4")   5d36d01d（16进制）=1563873309（十进制）=》  1563873309（时间戳：秒）=2019/7/23 17:15:9（北京时间）  
+>2，格式：时间戳（4字节，秒） 机器（3字节，通常是机器名散列值） PID（2字节，产生ObjectId的进程id） 计数器（3字节，范围2的24次方，即每个机器每个进程每秒中最多允许16777216个不同的ObjectId） 时间戳在前，数据大致以插入顺序排列      
 
 ### insert插入
->1，批量插入只支持对统一集合操作，不支持不同集合的批量插入
->2，只检查是否包含_id，文档大小不超过4MB，不做别的数据校验，当然可以再启动数据库的时候，开启 --objcheck选项，插入之间先检查文档结构的有效性，有性能开销
+>1，批量插入只支持对统一集合操作，不支持不同集合的批量插入      
+>2，只检查是否包含_id，文档大小不超过4MB，不做别的数据校验，当然可以再启动数据库的时候，开启 --objcheck选项，插入之间先检查文档结构的有效性，有性能开销            
 
 
 ### remove删除：不能撤销，不能恢复，所以删除操作要谨慎
 
 ### update更新：两个参数：查询文档+修改器(原子性)文档   mongodb为文档预留了空间，当超过，则分配一块新空间
->1，$inc：不存在则创建，增加修改器 {"_id":ObjectId("5d36d01d121c0f10bd2df3e4"),"url":"xxx","pages":51} db.coll.update({"url":"xxx"},{"$inc":{"pages":1}})=>{"_id":ObjectId("5d36d01d121c0f10bd2df3e4"),"url":"xxx","pages":52}                        
+>1，$inc：不存在则创建，增加修改器 {"_id":ObjectId("5d36d01d121c0f10bd2df3e4"),"url":"xxx","pages":51} db.coll.update({"url":"xxx"},{"$inc":{"pages":1}})=>{"_id":ObjectId("5d36d01d121c0f10bd2df3e4"),"url":"xxx","pages":52}                         
 >2，$set：不存在则创建   $unset       
 >3，数组修改器 $push        
 >4，如果一个值不在数组里就加进去 $ne $addToSet  $each    
