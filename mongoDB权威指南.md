@@ -17,10 +17,11 @@
 ### MongoDB是面向文档的数据库，具有更加方便的拓展性
 
 ### MongoDB VS Mysql
----------|----------|---------|---------|----------|---------
-数据库|database|	create| database |$dbname	db	use $dbname
-表	|table|	create table $tablename schema	|collection	|无需事先创建。 db.createCollection
-记录|	record|	insert into $tablename ...|	document|	db.$collectionName.insert({})
+ 概念|mysql|mongodb
+---------|----------|---------
+ 数据库|database|database
+ 表|table|collection
+ 记录|record|document
 
 ### document文档：核心概念
 >1，文档的键是字符串，不能含有\0（空格，是以空格为结尾符的）区分类型，大小写，不可有重复的键    
